@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CursorAffordance : MonoBehaviour
 {
-    [SerializeField] Texture2D walkableSFX;
-    [SerializeField] Texture2D unknownSFX;
-    [SerializeField] Texture2D TargetSFX;
+    [SerializeField] Texture2D walkableSFX = null;
+    [SerializeField] Texture2D unknownSFX = null;
+    [SerializeField] Texture2D TargetSFX = null;
 
     CameraRaycaster cameraRaycaster;
     // Start is called before the first frame update
