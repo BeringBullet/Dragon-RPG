@@ -663,6 +663,16 @@ PrefabInstance:
       propertyPath: walkableSFX
       value: 
       objectReference: {fileID: 2800000, guid: 7ed0bd885406e2d41aa402de95fc5fd0, type: 3}
+    - target: {fileID: 2844585924272725200, guid: 64da23bc0084761499de657d1093d3bc,
+        type: 3}
+      propertyPath: cursorHotspot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844585924272725200, guid: 64da23bc0084761499de657d1093d3bc,
+        type: 3}
+      propertyPath: cursorHotspot.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64da23bc0084761499de657d1093d3bc, type: 3}
 --- !u!1001 &6621615930280232780

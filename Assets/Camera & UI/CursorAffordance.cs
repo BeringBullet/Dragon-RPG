@@ -7,7 +7,7 @@ public class CursorAffordance : MonoBehaviour
     [SerializeField] Texture2D walkableSFX = null;
     [SerializeField] Texture2D unknownSFX = null;
     [SerializeField] Texture2D TargetSFX = null;
-
+    [SerializeField] Vector2 cursorHotspot = new Vector2(0, 0);
     CameraRaycaster cameraRaycaster;
     // Start is called before the first frame update
     void Start()
@@ -21,16 +21,16 @@ public class CursorAffordance : MonoBehaviour
         switch (cameraRaycaster.layerHit)
         {
             case Layer.Walkable:
-                Cursor.SetCursor(walkableSFX, Vector2.zero, CursorMode.Auto);
+                Cursor.SetCursor(walkableSFX, cursorHotspot, CursorMode.Auto);
                 break;
             case Layer.Enemy:
-                Cursor.SetCursor(TargetSFX, Vector2.zero, CursorMode.Auto);
+                Cursor.SetCursor(TargetSFX, cursorHotspot, CursorMode.Auto);
                 break;
             case Layer.RaycastEndStop:
-                Cursor.SetCursor(unknownSFX, Vector2.zero, CursorMode.Auto);
+                Cursor.SetCursor(unknownSFX, cursorHotspot, CursorMode.Auto);
                 break;
             default:
-                Cursor.SetCursor(unknownSFX, Vector2.zero, CursorMode.Auto);
+                Cursor.SetCursor(unknownSFX, cursorHotspot, CursorMode.Auto);
                 break;
         }
     }
