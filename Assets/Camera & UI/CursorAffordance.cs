@@ -16,7 +16,7 @@ public class CursorAffordance : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         switch (cameraRaycaster.layerHit)
         {
@@ -30,7 +30,7 @@ public class CursorAffordance : MonoBehaviour
                 Cursor.SetCursor(unknownSFX, cursorHotspot, CursorMode.Auto);
                 break;
             default:
-                Cursor.SetCursor(unknownSFX, cursorHotspot, CursorMode.Auto);
+                Debug.LogError("Don't know what cursor to show");
                 break;
         }
     }
