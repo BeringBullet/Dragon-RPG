@@ -60,10 +60,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CameraFollow.cs" />
-    <Compile Include="Assets\Scripts\CameraRaycaster.cs" />
-    <Compile Include="Assets\Scripts\Cursor.cs" />
-    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Camera &amp; UI\CameraFollow.cs" />
+    <Compile Include="Assets\Camera &amp; UI\CameraRaycaster.cs" />
+    <Compile Include="Assets\Camera &amp; UI\Cursor.cs" />
+    <Compile Include="Assets\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Utility.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>E:/bering/Unity/Dragon RPG/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
