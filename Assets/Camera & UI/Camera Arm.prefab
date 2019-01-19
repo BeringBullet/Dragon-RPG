@@ -154,3 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727a1dffc3de31f44825512431a379bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkableSFX: {fileID: 2800000, guid: 7ed0bd885406e2d41aa402de95fc5fd0, type: 3}
+  unknownSFX: {fileID: 2800000, guid: a6f2d0fa602b0a946904e3e963ae1056, type: 3}
+  TargetSFX: {fileID: 2800000, guid: 15a01b4174309bb48a92be1c930c757d, type: 3}
+  cursorHotspot: {x: 0, y: 0}
