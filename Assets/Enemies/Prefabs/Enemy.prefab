@@ -1615,7 +1615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealthPoints: 100
-  attachRaduis: 5
+  attachRaduis: 7
 --- !u!1 &150244
 GameObject:
   m_ObjectHideFlags: 0

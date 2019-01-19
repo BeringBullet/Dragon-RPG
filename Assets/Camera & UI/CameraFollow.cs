@@ -2,23 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
-{
-    GameObject player;
+public class CameraFollow : MonoBehaviour {
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");    
-    }
-    private void LateUpdate()
-    {
-        this.transform.position = player.transform.position;
-    }
+	[SerializeField] GameObject gameCanvasPrefab = null;
+	[SerializeField] GameObject eventSystemPrefab = null;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	GameObject player;
+
+	// Use this for initialization
+	void Start () {
+        player = GameObject.FindGameObjectWithTag("Player");
+		Instantiate (gameCanvasPrefab);
+		Instantiate (eventSystemPrefab);
+	}
+	
+	// Update is called once per frame
+	void LateUpdate () {
+        transform.position = player.transform.position;
+	}
 }
