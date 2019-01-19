@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: d64da2be8951edf44a52ff97cd848194
-labels:
-- SceneSetup
-PrefabImporter:
+guid: 92bd49b41ebe8d449a2034ede84495ef
+folderAsset: yes
+DefaultImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
