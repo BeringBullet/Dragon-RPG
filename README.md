@@ -20,7 +20,7 @@ Diablo meets Monty Python<br>
 </p>
 <b>Anticipated Steam Early Access Launch date:</b> Q1 2020 or earlier<br>
 <p>
-<b>Feature Development Priorities:<br>
+  <b>Feature Development Priorities:</b><br>
 Real-time combat with tons of different enemies to smash<br>
 All the required RPG abilities and stats (upgradeable)<br>
 Level building and game progression<br>
