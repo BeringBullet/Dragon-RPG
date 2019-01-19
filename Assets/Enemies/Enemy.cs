@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour
         }
 
     }
+
     public float healthAsPercentage
     {
         get
