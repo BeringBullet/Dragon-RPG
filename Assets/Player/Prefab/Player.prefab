@@ -169,9 +169,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyLayer: 10
-  maxHealthPoints: 100
-  damagePerHit: 10
-  minTimeBetwwnHit: 0.5
+  maxHealthPoints: 1000
+  damagePerHit: 50
+  minTimeBetwwnHit: 1
   maxAttackRange: 2
 --- !u!1 &6372405471592765600
 GameObject:
