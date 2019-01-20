@@ -1344,10 +1344,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: WindMill
       objectReference: {fileID: 0}
-    - target: {fileID: 1800113367532696, guid: 833a3cbec60a98b4991b7bfaa00b878f, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 4856087298316178, guid: 833a3cbec60a98b4991b7bfaa00b878f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -18.792282
@@ -1391,14 +1387,6 @@ PrefabInstance:
     - target: {fileID: 4856087298316178, guid: 833a3cbec60a98b4991b7bfaa00b878f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1230046235247606, guid: 833a3cbec60a98b4991b7bfaa00b878f, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1368968028811168, guid: 833a3cbec60a98b4991b7bfaa00b878f, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 833a3cbec60a98b4991b7bfaa00b878f, type: 3}
