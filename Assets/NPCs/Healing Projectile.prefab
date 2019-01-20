@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4936555725279167837}
   - component: {fileID: 2268397738632467760}
   m_Layer: 9
-  m_Name: Projectile
+  m_Name: Healing Projectile
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6fd099d339b4ae34692c8258e4f87531, type: 2}
+  - {fileID: 2100000, guid: cbe85407ae1625d48b33aa72ff8c36a0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -151,4 +151,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10e5e583db1403e4f84767393c228209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 10
+  projectileSpeed: 35

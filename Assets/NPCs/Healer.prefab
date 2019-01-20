@@ -216,7 +216,7 @@ MonoBehaviour:
   m_RunCycleLegOffset: 0.2
   m_MoveSpeedMultiplier: 0.5
   m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 0.3
+  m_GroundCheckDistance: 1
 --- !u!195 &2338816492189541817
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -264,10 +264,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180c131c11a98114398615eada0affd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 250
+  maxHealthPoints: 100
   chaseRadius: 1
   attackRadius: 2.5
-  damagePerShot: -100
+  damagePerShot: -1000
   secondsBetweenShots: 5
   verticalAimOffset: {x: 0, y: 1, z: 0}
   projectileToUse: {fileID: 6987024580045349680, guid: ab8255e6c683f124497823380be73a81,

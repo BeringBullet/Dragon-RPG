@@ -767,7 +767,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f85fd045e25a2f244b919109e02e1ae3, type: 2}
+  - {fileID: 2100000, guid: e46d2d008161d5045bcea72b07812ba0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1474,7 +1474,7 @@ GameObject:
   - component: {fileID: 6471138594948765948}
   - component: {fileID: 8612177839528311306}
   m_Layer: 10
-  m_Name: Minion
+  m_Name: Knight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1567,7 +1567,7 @@ MonoBehaviour:
   m_RunCycleLegOffset: 0.2
   m_MoveSpeedMultiplier: 0.5
   m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 0.3
+  m_GroundCheckDistance: 1
 --- !u!195 &6233088084264758013
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1615,11 +1615,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180c131c11a98114398615eada0affd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 40
+  maxHealthPoints: 800
   chaseRadius: 10
   attackRadius: 2
-  damagePerShot: 5
-  secondsBetweenShots: 0.5
+  damagePerShot: 100
+  secondsBetweenShots: 2
   verticalAimOffset: {x: 0, y: 1, z: 0}
   projectileToUse: {fileID: 6987024580045349680, guid: 23872f4f6b400654c95c929e85082147,
     type: 3}

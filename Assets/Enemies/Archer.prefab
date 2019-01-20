@@ -2459,7 +2459,7 @@ MonoBehaviour:
   m_RunCycleLegOffset: 0.2
   m_MoveSpeedMultiplier: 0.5
   m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 0.3
+  m_GroundCheckDistance: 1
 --- !u!195 &2700210097288106143
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2511,7 +2511,7 @@ MonoBehaviour:
   chaseRadius: 2.5
   attackRadius: 10
   damagePerShot: 50
-  secondsBetweenShots: 1.5
+  secondsBetweenShots: 2
   verticalAimOffset: {x: 0, y: 1, z: 0}
   projectileToUse: {fileID: 6987024580045349680, guid: 23872f4f6b400654c95c929e85082147,
     type: 3}
