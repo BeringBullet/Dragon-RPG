@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour, IDamageable
             isAttackingPlayer = false;
             CancelInvoke("SpawnProjectile");
         }
-
+         
         if (isChassingPlayer)
         {
             aiCharacterControl.SetTarget(player.transform);
