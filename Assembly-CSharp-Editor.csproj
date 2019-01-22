@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Editor\CameraRaycasterEditor.cs" />
+    <Compile Include="Assets\Editor\SnapToGround.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>E:/bering/Unity/Dragon RPG/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
