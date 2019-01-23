@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4893554851578796}
   m_Layer: 0
-  m_Name: Dirt Old Hoe
+  m_Name: Dirty Old Hoe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 4767910791676818}
   - component: {fileID: 33448204232336156}
   - component: {fileID: 23011425123666096}
+  - component: {fileID: 1902653222770522504}
   m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
@@ -109,6 +110,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &1902653222770522504
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370886641937988}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.078212, y: 0.74, z: 0.10289102}
+  m_Center: {x: 0, y: 0.26, z: -0.0022655022}
 --- !u!1 &1946964942119156
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,6 +134,7 @@ GameObject:
   - component: {fileID: 4269166806003910}
   - component: {fileID: 33092319420686528}
   - component: {fileID: 23265756660549478}
+  - component: {fileID: 7299419348413275521}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -186,3 +201,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &7299419348413275521
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946964942119156}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.447284, y: 0.11777797, z: 0.84292316}
+  m_Center: {x: 0, y: 1.4366554, z: -0.14584953}

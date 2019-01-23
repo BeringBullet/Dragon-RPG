@@ -1278,7 +1278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4722223415748676, guid: eaa52d883b6ece74ab295cf26f627023, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4722223415748676, guid: eaa52d883b6ece74ab295cf26f627023, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4972,7 +4972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 408730, guid: 4a48d5042551fda469a9a296682e5679, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 408730, guid: 4a48d5042551fda469a9a296682e5679, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6010,6 +6010,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2760979578453211254, guid: 216687d208ab9f248b98567498f1a442,
+        type: 3}
+      propertyPath: weaponToUse
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e810b56820da7542a00ca0c11e80492,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 216687d208ab9f248b98567498f1a442, type: 3}
 --- !u!4 &1682377265 stripped
