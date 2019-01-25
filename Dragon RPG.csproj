@@ -616,10 +616,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Dragon RPG.Plugins.csproj">
-      <Project>{DF36A61F-96DA-918E-F719-CDFB93037619}</Project>
-      <Name>Dragon RPG.Plugins</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
       <Project>{3A848AB7-9891-EDDA-D555-BF184C2F81F4}</Project>
       <Name>Unity.TextMeshPro.Editor</Name>
@@ -642,46 +638,37 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CameraUI\CameraFollow.cs" />
-    <Compile Include="Assets\CameraUI\CameraRaycaster.cs" />
-    <Compile Include="Assets\CameraUI\CursorAffordance.cs" />
-    <Compile Include="Assets\CameraUI\PlayerHealthBar.cs" />
-    <Compile Include="Assets\Characters\Enemies\Enemy.cs" />
-    <Compile Include="Assets\Characters\Enemies\EnemyHealthBar.cs" />
-    <Compile Include="Assets\Characters\Enemies\EnemyUI.cs" />
-    <Compile Include="Assets\Characters\Enemies\Projectile.cs" />
-    <Compile Include="Assets\Characters\Player\Player.cs" />
-    <Compile Include="Assets\Characters\Player\PlayerMovement.cs" />
-    <Compile Include="Assets\Utility\IDamageable.cs" />
-    <Compile Include="Assets\Utility\SpinMe.cs" />
+    <Compile Include="Assets\_CameraUI\CameraFollow.cs" />
+    <Compile Include="Assets\_CameraUI\CameraRaycaster.cs" />
+    <Compile Include="Assets\_CameraUI\CursorAffordance.cs" />
+    <Compile Include="Assets\_CameraUI\PlayerHealthBar.cs" />
+    <Compile Include="Assets\_Characters\Enemies\Enemy.cs" />
+    <Compile Include="Assets\_Characters\Enemies\EnemyHealthBar.cs" />
+    <Compile Include="Assets\_Characters\Enemies\EnemyUI.cs" />
+    <Compile Include="Assets\_Characters\Player\Player.cs" />
+    <Compile Include="Assets\_Characters\Player\PlayerMovement.cs" />
+    <Compile Include="Assets\_Characters\ThirdPersonCharacter\Scripts\AICharacterControl.cs" />
+    <Compile Include="Assets\_Characters\ThirdPersonCharacter\Scripts\ThirdPersonCharacter.cs" />
+    <Compile Include="Assets\_Characters\ThirdPersonCharacter\Scripts\ThirdPersonUserControl.cs" />
+    <Compile Include="Assets\_Core\IDamageable.cs" />
+    <Compile Include="Assets\_Core\SpinMe.cs" />
+    <Compile Include="Assets\_Environment\Water\Scripts\Displace.cs" />
+    <Compile Include="Assets\_Environment\Water\Scripts\GerstnerDisplace.cs" />
+    <Compile Include="Assets\_Environment\Water\Scripts\MeshContainer.cs" />
+    <Compile Include="Assets\_Environment\Water\Scripts\PlanarReflection.cs" />
+    <Compile Include="Assets\_Environment\Water\Scripts\SpecularLighting.cs" />
+    <Compile Include="Assets\_Environment\Water\Scripts\Water.cs" />
+    <Compile Include="Assets\_Environment\Water\Scripts\WaterBase.cs" />
+    <Compile Include="Assets\_Environment\Water\Scripts\WaterTile.cs" />
+    <Compile Include="Assets\_Weapons\Ranged\Ball Gun\Ball.cs" />
+    <Compile Include="Assets\_Weapons\Ranged\Projectile.cs" />
+    <Compile Include="Assets\_Weapons\Weapon.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\SETUP &amp; STANDARDS.txt" />
-    <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
-    <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
-    <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
-    <None Include="Assets\Standard Assets\Effects\ImageEffects\Readme.txt" />
-    <None Include="Assets\Standard Assets\Effects\Projectors\Guidelines.txt" />
-    <None Include="Assets\Standard Assets\Effects\Projectors\Shaders\ProjectorLight.shader" />
-    <None Include="Assets\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
-    <None Include="Assets\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularDisplacement.shader" />
-    <None Include="Assets\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularSmooth.shader" />
-    <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
-    <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />
-    <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLit.shader" />
-    <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
-    <None Include="Assets\Standard Assets\Environment\Water (Basic)\DO_NOT_WORK_IN_VR.txt" />
-    <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
-    <None Include="Assets\Standard Assets\Environment\Water\DO_NOT_WORK_IN_VR.txt" />
-    <None Include="Assets\Standard Assets\Environment\Water\Water\Shaders\FXWaterPro.shader" />
-    <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Advanced.shader" />
-    <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
-    <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\WaterInclude.cginc" />
-    <None Include="Assets\Standard Assets\Fonts\OpenSans\License!.txt" />
-    <None Include="Assets\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
-    <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
-    <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
-    <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
+    <None Include="Assets\World Objects\Village\FXWaterPro.shader" />
+    <None Include="Assets\_Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
+    <None Include="Assets\_Environment\Water\Shaders\FXWaterPro.shader" />
     <None Include="Packages\com.unity.collab-proxy\Editor\Resources\Styles\CollabHistoryCommon.uss" />
     <None Include="Packages\com.unity.collab-proxy\Editor\Resources\Styles\CollabHistoryDark.uss" />
     <None Include="Packages\com.unity.collab-proxy\Editor\Resources\Styles\CollabHistoryLight.uss" />

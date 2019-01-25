@@ -3,7 +3,7 @@ using RPG.Weapons;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityStandardAssets.Characters.ThirdPerson;
+using RPG.Characters.ThirdPerson;
 
 namespace RPG.Charactor
 {
