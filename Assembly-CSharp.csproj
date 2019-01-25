@@ -60,19 +60,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CameraUI\CameraFollow.cs" />
-    <Compile Include="Assets\CameraUI\CameraRaycaster.cs" />
-    <Compile Include="Assets\CameraUI\CursorAffordance.cs" />
-    <Compile Include="Assets\CameraUI\PlayerHealthBar.cs" />
-    <Compile Include="Assets\Characters\Enemies\Enemy.cs" />
-    <Compile Include="Assets\Characters\Enemies\EnemyHealthBar.cs" />
-    <Compile Include="Assets\Characters\Enemies\EnemyUI.cs" />
-    <Compile Include="Assets\Characters\Enemies\Projectile.cs" />
-    <Compile Include="Assets\Characters\Player\Player.cs" />
-    <Compile Include="Assets\Characters\Player\PlayerMovement.cs" />
-    <Compile Include="Assets\Utility\IDamageable.cs" />
-    <Compile Include="Assets\Utility\SpinMe.cs" />
-    <Compile Include="Assets\Weapons\Weapon.cs" />
+    <Compile Include="Assets\_CameraUI\CameraFollow.cs" />
+    <Compile Include="Assets\_CameraUI\CameraRaycaster.cs" />
+    <Compile Include="Assets\_CameraUI\CursorAffordance.cs" />
+    <Compile Include="Assets\_CameraUI\PlayerHealthBar.cs" />
+    <Compile Include="Assets\_Characters\Enemies\Enemy.cs" />
+    <Compile Include="Assets\_Characters\Enemies\EnemyHealthBar.cs" />
+    <Compile Include="Assets\_Characters\Enemies\EnemyUI.cs" />
+    <Compile Include="Assets\_Characters\Player\Player.cs" />
+    <Compile Include="Assets\_Characters\Player\PlayerMovement.cs" />
+    <Compile Include="Assets\_Characters\ThirdPersonCharacter\Scripts\AICharacterControl.cs" />
+    <Compile Include="Assets\_Characters\ThirdPersonCharacter\Scripts\ThirdPersonCharacter.cs" />
+    <Compile Include="Assets\_Characters\ThirdPersonCharacter\Scripts\ThirdPersonUserControl.cs" />
+    <Compile Include="Assets\_Core\IDamageable.cs" />
+    <Compile Include="Assets\_Core\SpinMe.cs" />
+    <Compile Include="Assets\_Environment\Water\Scripts\Displace.cs" />
+    <Compile Include="Assets\_Environment\Water\Scripts\GerstnerDisplace.cs" />
+    <Compile Include="Assets\_Environment\Water\Scripts\MeshContainer.cs" />
+    <Compile Include="Assets\_Environment\Water\Scripts\PlanarReflection.cs" />
+    <Compile Include="Assets\_Environment\Water\Scripts\SpecularLighting.cs" />
+    <Compile Include="Assets\_Environment\Water\Scripts\Water.cs" />
+    <Compile Include="Assets\_Environment\Water\Scripts\WaterBase.cs" />
+    <Compile Include="Assets\_Environment\Water\Scripts\WaterTile.cs" />
+    <Compile Include="Assets\_Weapons\Ranged\Ball Gun\Ball.cs" />
+    <Compile Include="Assets\_Weapons\Ranged\Projectile.cs" />
+    <Compile Include="Assets\_Weapons\Weapon.cs" />
+    <None Include="Assets\_Environment\Water\Shaders\FXWaterPro.shader" />
+    <None Include="Assets\_Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
     <None Include="Assets\SETUP &amp; STANDARDS.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>E:/bering/Unity/Dragon RPG/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
@@ -650,12 +664,6 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>E:/Program Files/Unity/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{72D1FE5D-4FB5-4146-9B97-8EF2224E0C98}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
