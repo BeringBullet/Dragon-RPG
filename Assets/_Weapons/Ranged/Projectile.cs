@@ -18,7 +18,7 @@ namespace RPG.Weapons
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (spwanParent && collision.gameObject == spwanParent) return;
+            if (spwanParent && collision.gameObject.layer == spwanParent.layer) return;
             Component damagableComponent = collision.gameObject.GetComponent(typeof(IDamageable));
             if (damagableComponent)
             {

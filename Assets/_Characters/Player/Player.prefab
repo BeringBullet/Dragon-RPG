@@ -35,7 +35,6 @@ Transform:
   m_LocalPosition: {x: 19.08, y: 0, z: -8.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6372405471592924318}
   - {fileID: 6372405471592924304}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -82,7 +81,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2760979577831937164}
-  m_Material: {fileID: 13400000, guid: 52baaeb214519f347a35cf0edfd262ff, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.3
@@ -118,7 +117,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2760979577831937164}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beb75cb33cc6f884db40fe6cec105d9e, type: 3}
+  m_Script: {fileID: 11500000, guid: f56fba66945536d46966d76cd2285dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!195 &215030974582409273
@@ -165,15 +164,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2760979577831937164}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9268856d129aa64a8ab4590ce181c5b, type: 3}
+  m_Script: {fileID: 11500000, guid: d63ee947c754a16439a2a36b010c1961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyLayer: 10
-  maxHealthPoints: 100
-  damagePerHit: 10
-  minTimeBetwwnHit: 0.5
-  maxAttackRange: 2
-  weaponToUse: {fileID: 11400000, guid: 7cd2adbc10065a74b892fa13ee71e80d, type: 2}
+  maxHealthPoints: 1000
+  damagePerHit: 50
+  weaponToUse: {fileID: 11400000, guid: 4dcbd5e83d1261a47aab0804668e101c, type: 2}
   weaponSocket: {fileID: 6372405471592765622}
   animatorOverrideController: {fileID: 22100000, guid: f826db750c436504c8bbce50460dc2aa,
     type: 2}
@@ -454,9 +451,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 6372405471592924318}
   m_Father: {fileID: 2760979577831661832}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &6372405471606363582
 SkinnedMeshRenderer:
@@ -702,12 +700,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6372405471592765630}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6372405471592924302}
-  m_Father: {fileID: 2760979577831661832}
+  m_Father: {fileID: 6372405471592924304}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6372405471592765654
