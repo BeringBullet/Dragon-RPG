@@ -34,9 +34,6 @@ Inventory, loot, usable items<br>
 <br>https://trello.com/b/9OvRB4p6/dragon-rpg
 <br>https://www.mindmeister.com/1203940351
 <br><b>Art Direction Concept Document</b>
-
 <br>https://docs.google.com/document/d/1EOqW5RE5wP0Blg-qQEJJ-pQ-XS2XSJKVkb-aFh3VRAg/edit
 <br>https://docs.google.com/document/d/1fK3QTUQPTGYYuaCgHwP-Adug1S_RRDNOQa40upbys6s/edit#heading=h.ki7nh88jr601
-template
-<br>https://docs.google.com/document/d/1FXLKj7sHZcbZ1PrXM1wTF-Fz5FjUjqmV6SbS-nG7rGw/edit
 
