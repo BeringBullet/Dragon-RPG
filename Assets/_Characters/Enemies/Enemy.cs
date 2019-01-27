@@ -41,22 +41,12 @@ namespace RPG.Characters
             aiCharacterControl = GetComponent<AICharacterControl>();
             currentHealthPoints = maxHealthPoints;
         }
-
+        Coroutine cr;
         void Update()
         {
             float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
-            if (distanceToPlayer <= attackRadius && !isAttacking)
-            {
-                isAttacking = true;
-                InvokeRepeating("FireProjectile", 0f, secondsBetweenShots); // TODO switch to coroutines
-            }
-
-            if (distanceToPlayer > attackRadius)
-            {
-                isAttacking = false;
-                CancelInvoke();
-            }
-
+            isAttacking = (distanceToPlayer <= attackRadius && !isAttacking);
+            
             if (distanceToPlayer <= chaseRadius)
             {
                 aiCharacterControl.SetTarget(player.transform);
@@ -65,10 +55,20 @@ namespace RPG.Characters
             {
                 aiCharacterControl.SetTarget(transform);
             }
+
+            if (isAttacking)
+            {
+                cr = StartCoroutine(FireProjectile());
+            }
+            else
+            {
+                if (cr != null)
+                    StopCoroutine(cr);
+            }
         }
 
         // TODO separate out Character firing logic
-        void FireProjectile()
+        IEnumerator FireProjectile()
         {
             GameObject newProjectile = Instantiate(projectileToUse, projectileSocket.transform.position, Quaternion.identity);
             Projectile projectileComponent = newProjectile.GetComponent<Projectile>();
@@ -78,6 +78,7 @@ namespace RPG.Characters
             Vector3 unitVectorToPlayer = (player.transform.position + aimOffset - projectileSocket.transform.position).normalized;
             float projectileSpeed = projectileComponent.GetDefaultLaunchSpeed();
             newProjectile.GetComponent<Rigidbody>().velocity = unitVectorToPlayer * projectileSpeed;
+            yield return new WaitForSeconds(secondsBetweenShots);
         }
 
         void OnDrawGizmos()

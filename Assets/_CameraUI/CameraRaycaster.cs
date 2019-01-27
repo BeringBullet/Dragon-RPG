@@ -49,14 +49,9 @@ namespace RPG.CameraUI
         {
             RaycastHit hitInfo;
             Physics.Raycast(ray,out hitInfo, maxRaycastDepth);
-            print($"rey hit1: {hitInfo}");
-
             var gameObjectHit = hitInfo.collider.gameObject;
-            print($"rey hit2: {gameObjectHit}");
-
             var enemyHit = gameObjectHit.GetComponent<Enemy>();
 
-            print($"rey hit3: {enemyHit}");
             if (enemyHit)
             {
                 Cursor.SetCursor(enemyCursor, cursorHotspot, CursorMode.Auto);
