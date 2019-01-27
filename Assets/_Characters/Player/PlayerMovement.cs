@@ -11,58 +11,35 @@ namespace RPG.Characters
     [RequireComponent(typeof(ThirdPersonCharacter))]
     public class PlayerMovement : MonoBehaviour
     {
-        ThirdPersonCharacter thirdPersonCharacter = null;   // A reference to the ThirdPersonCharacter on the object
         CameraRaycaster cameraRaycaster = null;
-        Vector3 clickPoint;
         AICharacterControl aiCharacterControl = null;
         GameObject walkTarget = null;
-
-        // TODO solve fight between serialize and const
-        [SerializeField] const int walkableLayerNumber = 8;
-        [SerializeField] const int enemyLayerNumber = 9;
 
         void Start()
         {
             cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
-            thirdPersonCharacter = GetComponent<ThirdPersonCharacter>();
             aiCharacterControl = GetComponent<AICharacterControl>();
             walkTarget = new GameObject("walkTarget");
 
-            cameraRaycaster.notifyMouseClickObservers += ProcessMouseClick;
+            cameraRaycaster.onMouseOverWalkable += CameraRaycaster_onMouseOverWalkable;
+            cameraRaycaster.onMouseOverEnemy += CameraRaycaster_onMouseOverEnemy;
         }
 
-
-        void ProcessMouseClick(RaycastHit raycastHit, int layerHit)
+        private void CameraRaycaster_onMouseOverEnemy(Enemy enemy)
         {
-            switch (layerHit)
+            if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(1))
             {
-                case enemyLayerNumber:
-                    // navigate to the enemy
-                    GameObject enemy = raycastHit.collider.gameObject;
-                    aiCharacterControl.SetTarget(enemy.transform);
-                    break;
-                case walkableLayerNumber:
-                    // navigate to point on the ground
-                    walkTarget.transform.position = raycastHit.point;
-                    aiCharacterControl.SetTarget(walkTarget.transform);
-                    break;
-                default:
-                    Debug.LogWarning("Don't know how to handle mouse click for player movement");
-                    return;
+                aiCharacterControl.SetTarget(enemy.transform);
             }
         }
 
-        // TODO make this get called again
-        void ProcessDirectMovement()
+        private void CameraRaycaster_onMouseOverWalkable(Vector3 destination)
         {
-            float h = Input.GetAxis("Horizontal");
-            float v = Input.GetAxis("Vertical");
-
-            // calculate camera relative direction to move:
-            Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
-            Vector3 movement = v * cameraForward + h * Camera.main.transform.right;
-
-            thirdPersonCharacter.Move(movement, false, false);
+            if (Input.GetMouseButton(0))
+            {
+                walkTarget.transform.position = destination;
+                aiCharacterControl.SetTarget(walkTarget.transform);
+            }
         }
     }
 }

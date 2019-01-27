@@ -62,12 +62,12 @@
   <ItemGroup>
     <Compile Include="Assets\_CameraUI\CameraFollow.cs" />
     <Compile Include="Assets\_CameraUI\CameraRaycaster.cs" />
-    <Compile Include="Assets\_CameraUI\CursorAffordance.cs" />
     <Compile Include="Assets\_Characters\AICharacterControl.cs" />
     <Compile Include="Assets\_Characters\DominantHand.cs" />
     <Compile Include="Assets\_Characters\Enemies\Enemy.cs" />
     <Compile Include="Assets\_Characters\Enemies\EnemyHealthBar.cs" />
     <Compile Include="Assets\_Characters\Enemies\EnemyUI.cs" />
+    <Compile Include="Assets\_Characters\Energy.cs" />
     <Compile Include="Assets\_Characters\Player\Player.cs" />
     <Compile Include="Assets\_Characters\Player\PlayerHealthBar.cs" />
     <Compile Include="Assets\_Characters\Player\PlayerMovement.cs" />
@@ -85,7 +85,6 @@
     <Compile Include="Assets\_Environment\Water\Scripts\WaterTile.cs" />
     <Compile Include="Assets\_Weapons\Ranged\Projectile.cs" />
     <Compile Include="Assets\_Weapons\Weapon.cs" />
-    <Compile Include="Assets\Energy.cs" />
     <None Include="Assets\_Environment\Water\Shaders\FXWaterPro.shader" />
     <None Include="Assets\_Environment\Village\FXWaterPro.shader" />
     <None Include="Assets\SETUP &amp; STANDARDS.txt" />
