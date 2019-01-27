@@ -1,98 +1,107 @@
-﻿using RPG.CameraUI;
-using RPG.Core;
-using RPG.Weapons;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
+// TODO consider re-wire...
+using RPG.CameraUI;
+using RPG.Core;
+using RPG.Weapons;
 
-namespace RPG.Charactor
+namespace RPG.Characters
 {
     public class Player : MonoBehaviour, IDamageable
     {
-        [SerializeField] int enemyLayer = 10;
+        [SerializeField] int enemyLayer = 9;
         [SerializeField] float maxHealthPoints = 100f;
         [SerializeField] float damagePerHit = 10f;
-
-        [SerializeField] Weapon weaponToUse;
-        [SerializeField] GameObject weaponSocket;
-        [SerializeField] AnimatorOverrideController animatorOverrideController;
+        [SerializeField] Weapon weaponInUse = null;
+        [SerializeField] AnimatorOverrideController animatorOverrideController = null;
 
         Animator animator;
-        float lastHitTime;
         float currentHealthPoints;
-        GameObject currentTarget;
         CameraRaycaster cameraRaycaster;
+        float lastHitTime = 0f;
 
-        private void Start()
+        public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
+
+        void Start()
         {
-            RegisterClickEvents();
+            RegisterForMouseClick();
             SetCurrentMaxHealth();
             PutWeaponInHand();
-            setupRuntimeAnimator();
-
+            SetupRuntimeAnimator();
         }
 
-        private void SetCurrentMaxHealth() => currentHealthPoints = maxHealthPoints;
+        public void TakeDamage(float damage)
+        {
+            currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
+        }
 
-        private void setupRuntimeAnimator()
+        private void SetCurrentMaxHealth()
+        {
+            currentHealthPoints = maxHealthPoints;
+        }
+
+        private void SetupRuntimeAnimator()
         {
             animator = GetComponent<Animator>();
             animator.runtimeAnimatorController = animatorOverrideController;
-            animatorOverrideController["DEFAULT ATTACK"] = WeaponToUse.AttackAnimation;
+            animatorOverrideController["DEFAULT ATTACK"] = weaponInUse.GetAttackAnimClip(); // remove const
         }
 
         private void PutWeaponInHand()
         {
-            var weaponPrefab = WeaponToUse.WeaponPrefab;
-            var weapon = Instantiate(weaponPrefab, weaponSocket.transform);
-            weapon.transform.localPosition = WeaponToUse.gripTransform.localPosition;
-            weapon.transform.localRotation = WeaponToUse.gripTransform.localRotation;
+            var weaponPrefab = weaponInUse.GetWeaponPrefab();
+            GameObject dominantHand = RequestDominantHand();
+            var weapon = Instantiate(weaponPrefab, dominantHand.transform);
+            weapon.transform.localPosition = weaponInUse.gripTransform.localPosition;
+            weapon.transform.localRotation = weaponInUse.gripTransform.localRotation;
         }
 
-        private void RegisterClickEvents()
+        private GameObject RequestDominantHand()
+        {
+            var dominantHands = GetComponentsInChildren<DominantHand>();
+            int numberOfDominantHands = dominantHands.Length;
+            Assert.IsFalse(numberOfDominantHands <= 0, "No DominantHand found on Player, please add one");
+            Assert.IsFalse(numberOfDominantHands > 1, "Multiple DominantHand scripts on Player, please remove one");
+            return dominantHands[0].gameObject;
+        }
+
+        private void RegisterForMouseClick()
         {
             cameraRaycaster = FindObjectOfType<CameraRaycaster>();
             cameraRaycaster.notifyMouseClickObservers += OnMouseClick;
         }
 
-        private void OnMouseClick(RaycastHit raycastHit, int layerHit)
+        void OnMouseClick(RaycastHit raycastHit, int layerHit)
         {
             if (layerHit == enemyLayer)
             {
-                currentTarget = raycastHit.collider.gameObject;
-                if (IsTargerInRange())
+                var enemy = raycastHit.collider.gameObject;
+                if (IsTargetInRange(enemy))
                 {
-                    AttackTarget();
+                    AttackTarget(enemy);
                 }
             }
         }
-        private void AttackTarget()
+
+        private void AttackTarget(GameObject target)
         {
-            var enemyComponent = currentTarget.GetComponent<IDamageable>();
-            if (Time.time - lastHitTime > WeaponToUse.MinTimeBetweenHit)
+            var enemyComponent = target.GetComponent<Enemy>();
+            if (Time.time - lastHitTime > weaponInUse.GetMinTimeBetweenHits())
             {
-                animator.SetTrigger("Attack"); //TODO make const
+                animator.SetTrigger("Attack"); // TODO make const
                 enemyComponent.TakeDamage(damagePerHit);
                 lastHitTime = Time.time;
             }
         }
 
-        private bool IsTargerInRange()
+        private bool IsTargetInRange(GameObject target)
         {
-            float distanceToTarget = (currentTarget.transform.position - transform.position).magnitude;
-            return distanceToTarget <= WeaponToUse.MaxAttackRange;
-        }
-
-        public float healthAsPercentage => currentHealthPoints / maxHealthPoints;
-
-        public Weapon WeaponToUse { get => weaponToUse; set => weaponToUse = value; }
-
-        void IDamageable.TakeDamage(float damage)
-        {
-            currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
-            //if (currentHealthPoints <=0) { Destroy(gameObject); }
+            float distanceToTarget = (target.transform.position - transform.position).magnitude;
+            return distanceToTarget <= weaponInUse.GetMaxAttackRange();
         }
     }
 }

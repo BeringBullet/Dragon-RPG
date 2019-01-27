@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: aa7d9f10fc88b4dc98864db21f2887b8
+guid: a3140334088d4f54abb0b8d2e774ed15
 labels:
-- Ray
-timeCreated: 1488914087
+- SceneSetup
+timeCreated: 1489424490
 licenseType: Free
 NativeFormatImporter:
   userData: 

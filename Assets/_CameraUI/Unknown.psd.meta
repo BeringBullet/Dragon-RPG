@@ -1,8 +1,6 @@
 fileFormatVersion: 2
-guid: f583eee83e4fa44ca9ae7aad88224fc5
-labels:
-- Ray
-timeCreated: 1488801761
+guid: ff2cec57e80042440a9b1032a28f316d
+timeCreated: 1489182600
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}

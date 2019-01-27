@@ -1,79 +1,68 @@
 using System;
 using UnityEngine;
-using RPG.Characters.ThirdPerson;
+using UnityStandardAssets.Characters.ThirdPerson;
 using UnityEngine.AI;
-using RPG.CameraUI;
+using RPG.CameraUI; // TODO consider re-wiring
 
-namespace RPG.Charactor
+namespace RPG.Characters
 {
-    [RequireComponent(typeof(AICharacterControl))]
     [RequireComponent(typeof(NavMeshAgent))]
+    [RequireComponent(typeof(AICharacterControl))]
     [RequireComponent(typeof(ThirdPersonCharacter))]
     public class PlayerMovement : MonoBehaviour
     {
-        ThirdPersonCharacter character = null;   // A reference to the ThirdPersonCharacter on the object
+        ThirdPersonCharacter thirdPersonCharacter = null;   // A reference to the ThirdPersonCharacter on the object
         CameraRaycaster cameraRaycaster = null;
-        AICharacterControl aiCharacterControl = null;
-        NavMeshAgent navMeshAgent = null;
-        GameObject walkTarget = null;
-        Vector3 currentDestination;
         Vector3 clickPoint;
+        AICharacterControl aiCharacterControl = null;
+        GameObject walkTarget = null;
 
+        // TODO solve fight between serialize and const
+        [SerializeField] const int walkableLayerNumber = 8;
+        [SerializeField] const int enemyLayerNumber = 9;
 
-        [SerializeField] const int uiLayerNumber = 5;
-        [SerializeField] const int walkableLayerNumber = 9;
-        [SerializeField] const int enemyLayerNumber = 10;
-
-
-        private void Start()
+        void Start()
         {
             cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
-            character = GetComponent<ThirdPersonCharacter>();
+            thirdPersonCharacter = GetComponent<ThirdPersonCharacter>();
             aiCharacterControl = GetComponent<AICharacterControl>();
-            navMeshAgent = GetComponent<NavMeshAgent>();
             walkTarget = new GameObject("walkTarget");
-            currentDestination = transform.position;
 
-            cameraRaycaster.notifyMouseClickObservers += CameraRaycaster_notifyMouseClickObservers;
+            cameraRaycaster.notifyMouseClickObservers += ProcessMouseClick;
         }
 
-        private void CameraRaycaster_notifyMouseClickObservers(RaycastHit raycastHit, int layerHit)
+
+        void ProcessMouseClick(RaycastHit raycastHit, int layerHit)
         {
             switch (layerHit)
             {
-                case walkableLayerNumber:
-                    walkTarget.transform.position = raycastHit.point;
-                    aiCharacterControl.SetTarget(walkTarget.transform);
-                    break;
                 case enemyLayerNumber:
+                    // navigate to the enemy
                     GameObject enemy = raycastHit.collider.gameObject;
                     aiCharacterControl.SetTarget(enemy.transform);
                     break;
+                case walkableLayerNumber:
+                    // navigate to point on the ground
+                    walkTarget.transform.position = raycastHit.point;
+                    aiCharacterControl.SetTarget(walkTarget.transform);
+                    break;
                 default:
-                    Debug.LogWarning("Don't know how to handle this click movement");
+                    Debug.LogWarning("Don't know how to handle mouse click for player movement");
                     return;
             }
-
         }
 
-        private void Update()
+        // TODO make this get called again
+        void ProcessDirectMovement()
         {
-            if (Input.GetKeyDown(KeyCode.G)) //todo: Allow player to map later or add to menu
-            {
-                currentDestination = transform.position;
-            }
+            float h = Input.GetAxis("Horizontal");
+            float v = Input.GetAxis("Vertical");
+
+            // calculate camera relative direction to move:
+            Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+            Vector3 movement = v * cameraForward + h * Camera.main.transform.right;
+
+            thirdPersonCharacter.Move(movement, false, false);
         }
-
-        //private void OnDrawGizmos()
-        //{
-        //    Gizmos.color = Color.black;
-        //    Gizmos.DrawLine(transform.position, currentDestination);
-        //    Gizmos.DrawSphere(currentDestination, 0.1f);
-        //    Gizmos.DrawSphere(clickPoint, .15f);
-
-        //    Gizmos.color = Color.red;
-        //    Gizmos.DrawWireSphere(transform.position, attackMoveRadius);
-        //}
     }
-
 }

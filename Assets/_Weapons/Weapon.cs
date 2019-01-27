@@ -7,28 +7,40 @@ namespace RPG.Weapons
     [CreateAssetMenu(menuName = ("RPG/Weapon"))]
     public class Weapon : ScriptableObject
     {
+
         public Transform gripTransform;
 
         [SerializeField] GameObject weaponPrefab;
         [SerializeField] AnimationClip attackAnimation;
-        [SerializeField] float minTimeBetweenHit = .5f;
+        [SerializeField] float minTimeBetweenHits = .5f;
         [SerializeField] float maxAttackRange = 2f;
 
-        public float MinTimeBetweenHit => minTimeBetweenHit;
-        public float MaxAttackRange => maxAttackRange;
-
-
-        public GameObject WeaponPrefab => weaponPrefab;
-        public AnimationClip AttackAnimation
+        public float GetMinTimeBetweenHits()
         {
-            get
-            {
-                RemvoeAnimationEvents();
-                return attackAnimation;
-            }
+            // TODO consdier whether we take animation time into account
+            return minTimeBetweenHits;
+        }
+
+        public float GetMaxAttackRange()
+        {
+            return maxAttackRange;
+        }
+
+        public GameObject GetWeaponPrefab()
+        {
+            return weaponPrefab;
+        }
+        
+        public AnimationClip GetAttackAnimClip()
+        {
+            RemoveAnimationEvents();
+            return attackAnimation;
         }
 
         // So that asset packs cannot cause crashes
-        private void RemvoeAnimationEvents() => attackAnimation.events = new AnimationEvent[0];
+        private void RemoveAnimationEvents()
+        {
+            attackAnimation.events = new AnimationEvent[0];
+        }
     }
 }
