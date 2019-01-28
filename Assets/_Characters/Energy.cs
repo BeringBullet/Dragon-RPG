@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using RPG.CameraUI;
+using System;
 
 namespace RPG.Characters
 {
@@ -10,22 +11,46 @@ namespace RPG.Characters
     {
         [SerializeField] RawImage energyBar;
         [SerializeField] float maxEnergyPoints = 100f;
+        [SerializeField] float regenPointPerSecond = 1f;
 
         float currentEnergyPoints;
         CameraRaycaster cameraRaycaster;
 
+        float EnergyAsPercent => currentEnergyPoints / maxEnergyPoints;
         // Use this for initialization
         void Start()
         {
             currentEnergyPoints = maxEnergyPoints;
-            cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
+        }
+        Coroutine cr;
+        private void Update()
+        {
+            if (currentEnergyPoints < maxEnergyPoints)
+            {
+                cr = StartCoroutine(AddEnergyPoints());
+            }
+            else
+            {
+                if (cr != null)
+                {
+                    StopCoroutine(cr);
+                    cr = null;
+                }
+            }
         }
 
-        public bool IsEnergyAvalibale(float amount)
+        private IEnumerator AddEnergyPoints()
         {
-            return amount < currentEnergyPoints;
+            var pointsToAdd = regenPointPerSecond * Time.deltaTime;
+            currentEnergyPoints = Mathf.Clamp(currentEnergyPoints + pointsToAdd, 0, maxEnergyPoints);
+
+            UpdateEnergyBar();
+            yield return new WaitForSeconds(1);
         }
-        public void ConsumeEnergy( float amount)
+
+        public bool IsEnergyAvalibale(float amount) => amount <= currentEnergyPoints;
+
+        public void ConsumeEnergy(float amount)
         {
             float newEnergyPoints = currentEnergyPoints - amount;
             currentEnergyPoints = Mathf.Clamp(newEnergyPoints, 0, maxEnergyPoints);
@@ -34,13 +59,8 @@ namespace RPG.Characters
 
         private void UpdateEnergyBar()
         {
-            float xValue = -(EnergyAsPercent() / 2f) - 0.5f;
+            float xValue = -(EnergyAsPercent / 2f) - 0.5f;
             energyBar.uvRect = new Rect(xValue, 0f, 0.5f, 1f);
-        }
-
-        float EnergyAsPercent()
-        {
-            return currentEnergyPoints / maxEnergyPoints;
         }
     }
 }

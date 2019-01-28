@@ -5,11 +5,13 @@ using UnityEngine;
 namespace RPG.Characters
 {
     [CreateAssetMenu(menuName = ("RPG/Special Ability/Power Attack"))]
-    public class PowerAttackCongif : SpecialAbilitiesConfig
+    public class PowerAttackCongif : SpecialAbility
     {
 
         [Header("Power Attack specific")]
         [SerializeField] float exstraDamage = 10f;
+        public float ExstraDamage => exstraDamage;
+
 
         public override void AttachComponentTo(GameObject gameObjectToAttachTo)
         {

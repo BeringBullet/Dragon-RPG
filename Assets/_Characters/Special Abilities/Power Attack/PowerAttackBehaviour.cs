@@ -8,9 +8,11 @@ namespace RPG.Characters
     {
        public PowerAttackCongif Config { set; private get; }
 
-        public void Use()
+        public void Use(AbilityUseParams value)
         {
-            print("Go for PowerAttack!!");
+            print($"Power attack used, base: {value.baseDamage} extra damage: {Config.ExstraDamage}");
+            var amount = Mathf.Clamp(value.baseDamage + Config.ExstraDamage, 0, 100);
+            value.target.TakeDamage(amount);
         }
 
         // Start is called before the first frame update
