@@ -17,7 +17,8 @@ namespace RPG.Characters
 
         [SerializeField] float attackRadius = 4f;
         [SerializeField] float damagePerShot = 9f;
-        [SerializeField] float secondsBetweenShots = 0.5f;
+        [SerializeField] float firingPeriodInS = 0.5f;
+        [SerializeField] float firingPeriodInVariation = 0.1f;
         [SerializeField] GameObject projectileToUse;
         [SerializeField] GameObject projectileSocket;
         [SerializeField] Vector3 aimOffset = new Vector3(0, 1f, 0);
@@ -25,7 +26,7 @@ namespace RPG.Characters
         bool isAttacking = false;
         float currentHealthPoints;
         AICharacterControl aiCharacterControl = null;
-        GameObject player = null;
+        Player player = null;
 
         public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
 
@@ -37,13 +38,19 @@ namespace RPG.Characters
 
         void Start()
         {
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = FindObjectOfType<Player>();
             aiCharacterControl = GetComponent<AICharacterControl>();
             currentHealthPoints = maxHealthPoints;
         }
         Coroutine cr;
         void Update()
         {
+            if (player.healthAsPercentage <= Mathf.Epsilon)
+            {
+                StopAllCoroutines();
+                Destroy(this);
+            }
+
             float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
             isAttacking = (distanceToPlayer <= attackRadius && !isAttacking);
             
@@ -78,7 +85,8 @@ namespace RPG.Characters
             Vector3 unitVectorToPlayer = (player.transform.position + aimOffset - projectileSocket.transform.position).normalized;
             float projectileSpeed = projectileComponent.GetDefaultLaunchSpeed();
             newProjectile.GetComponent<Rigidbody>().velocity = unitVectorToPlayer * projectileSpeed;
-            yield return new WaitForSeconds(secondsBetweenShots);
+            float randomisedDelay = Random.Range(firingPeriodInS - firingPeriodInVariation, firingPeriodInS + firingPeriodInVariation);
+            yield return new WaitForSeconds(firingPeriodInS);
         }
 
         void OnDrawGizmos()
