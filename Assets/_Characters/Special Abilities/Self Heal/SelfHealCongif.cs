@@ -8,8 +8,8 @@ namespace RPG.Characters
     public class SelfHealCongif : SpecialAbility
     {
         [Header("Self Heal specific")]
-        [SerializeField] float healthAmount = 10f;
-        public float HealthAmount => healthAmount;
+        [SerializeField] float extraHealth = 10f;
+        public float ExtraHealth => extraHealth;
 
 
         public override void AttachComponentTo(GameObject gameObjectToAttachTo)

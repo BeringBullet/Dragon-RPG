@@ -9,18 +9,15 @@ namespace RPG.Characters
     {
         [Header("Special Ability General")]
         [SerializeField] float energyCost = 10f;
+        [SerializeField] ParticleSystem particleSystemPrefab = null;
         public float EnergyCost => energyCost;
+        public ParticleSystem ParticleSystemPrefab => particleSystemPrefab;
 
         protected ISpecialAbilities behaviour;
 
         abstract public void AttachComponentTo(GameObject gameObjectToAttachTo);
 
-        public void Use(AbilityUseParams value)
-        {
-            behaviour.Use(value);
-        }
-
-
+        public void Use(AbilityUseParams value) => behaviour.Use(value);
     }
 
     public struct AbilityUseParams

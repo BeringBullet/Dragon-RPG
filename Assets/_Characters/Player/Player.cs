@@ -29,6 +29,7 @@ namespace RPG.Characters
         const string DEATH_TRIGGER = "Death";
         const string ATTACK_TRIGGER = "Attack";
 
+        Enemy currentEnemy;
         Coroutine deathCR;
         Animator animator;
         float currentHealthPoints;
@@ -43,14 +44,44 @@ namespace RPG.Characters
             SetCurrentMaxHealth();
             PutWeaponInHand();
             SetupRuntimeAnimator();
-
-            abilities[0].AttachComponentTo(gameObject);
+            AttachInitialAbilities();
+        
 
             audioSource = GetComponent<AudioSource>();
         }
-        public void TakeDamage(float damage)
+
+        private void AttachInitialAbilities()
         {
-            ReduceHealth(damage);
+            for (int i = 0; i < abilities.Length; i++)
+            {
+                if (abilities[i] != null)
+                    abilities[i].AttachComponentTo(gameObject);
+            }
+        }
+
+        private void Update()
+        {
+            if (healthAsPercentage > Mathf.Epsilon)
+            {
+                SnanForAbilityKeyDown();
+            }
+        }
+
+        private void SnanForAbilityKeyDown()
+        {
+            for (int i = 0; i < abilities.Length; i++)
+            {
+                int keyIndex = i + 1;
+                if (Input.GetKeyDown(keyIndex))
+                {
+                    AttemptSpecialAbility(i);
+                }
+            }
+        }
+
+        public void AdjustHealth(float value)
+        {
+            ReduceHealth(value);
             if (currentHealthPoints <= 0)
             {
                 StartCoroutine(KillPlayer());            
@@ -113,17 +144,18 @@ namespace RPG.Characters
 
         private void CameraRaycaster_onMouseOverEnemy(Enemy enemy)
         {
-            if (Input.GetMouseButton(0) && IsTargetInRange(enemy))
+            currentEnemy = enemy;
+            if (Input.GetMouseButton(0) && IsTargetInRange())
             {
-                AttackTarget(enemy);
+                AttackTarget();
             }
             else if (Input.GetMouseButtonDown(1))
             {
-                AttemptSpecialAbility(0, enemy);
+                AttemptSpecialAbility(0);
             }
         }
 
-        private void AttemptSpecialAbility(int abilityIndes, Enemy enemy)
+        private void AttemptSpecialAbility(int abilityIndes)
         {
             var energyComponent = GetComponent<Energy>();
             var ability = abilities[abilityIndes];
@@ -132,24 +164,24 @@ namespace RPG.Characters
             if (energyComponent.IsEnergyAvalibale(energyCost))
             {
                 energyComponent.ConsumeEnergy(energyCost);
-                var abilityPerams = new AbilityUseParams(enemy, baseDamage);
+                var abilityPerams = new AbilityUseParams(currentEnemy, baseDamage);
                 ability.Use(abilityPerams);
             }
         }
 
-        private void AttackTarget(Enemy enemy)
+        private void AttackTarget()
         {
             if (Time.time - lastHitTime > weaponInUse.GetMinTimeBetweenHits())
             {
                 animator.SetTrigger(ATTACK_TRIGGER); // TODO make const
-                enemy.TakeDamage(baseDamage);
+                currentEnemy.AdjustHealth(baseDamage);
                 lastHitTime = Time.time;
             }
         }
 
-        private bool IsTargetInRange(Enemy enemy)
+        private bool IsTargetInRange()
         {
-            float distanceToTarget = (enemy.transform.position - transform.position).magnitude;
+            float distanceToTarget = (currentEnemy.transform.position - transform.position).magnitude;
             return distanceToTarget <= weaponInUse.GetMaxAttackRange();
         }
     }
