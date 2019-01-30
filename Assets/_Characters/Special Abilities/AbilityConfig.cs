@@ -16,7 +16,7 @@ namespace RPG.Characters
         public float EnergyCost => energyCost;
         public ParticleSystem ParticleSystemPrefab => particleSystemPrefab;
 
-        protected ISpecialAbilities behaviour;
+        protected AbilityBehaviour behaviour;
 
         abstract public void AttachComponentTo(GameObject gameObjectToAttachTo);
 
@@ -58,10 +58,5 @@ namespace RPG.Characters
             this.baseDamage = baseDamage;
             this.player = player;
         }
-    }
-
-    public interface ISpecialAbilities
-    {
-        void Use(AbilityUseParams value);
     }
 }

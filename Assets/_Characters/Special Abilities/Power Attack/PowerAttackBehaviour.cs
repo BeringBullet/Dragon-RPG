@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace RPG.Characters
 {
-    public class PowerAttackBehaviour : MonoBehaviour, ISpecialAbilities
+    public class PowerAttackBehaviour : AbilityBehaviour
     {
        public PowerAttackCongif Config { set; private get; }
 
-        public void Use(AbilityUseParams value)
+        public override void  Use(AbilityUseParams value)
         {
             Config.PayParticleEffect(transform.position);
             Config.PlayAudio(value.player.AudioSource);

@@ -6,12 +6,12 @@ using System;
 
 namespace RPG.Characters
 {
-    public class AreaEffectBehaviour : MonoBehaviour, ISpecialAbilities
+    public class AreaEffectBehaviour : AbilityBehaviour
     {
         public AreaEffectConfig Config { set; private get; }
         
 
-        public void Use(AbilityUseParams value)
+        public override void Use(AbilityUseParams value)
         {
             Config.PayParticleEffect(transform.position);
             Config.PlayAudio(value.player.AudioSource);
