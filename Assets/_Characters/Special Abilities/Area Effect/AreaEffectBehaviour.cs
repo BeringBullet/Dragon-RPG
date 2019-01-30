@@ -8,9 +8,6 @@ namespace RPG.Characters
 {
     public class AreaEffectBehaviour : AbilityBehaviour
     {
-        public AreaEffectConfig Config { set; private get; }
-        
-
         public override void Use(AbilityUseParams value)
         {
             Config.PayParticleEffect(transform.position);
@@ -18,43 +15,22 @@ namespace RPG.Characters
             DealRadialDamage(value);
         }
 
-        private void PayParticleEffect()
-        {
-
-            var prefab = Instantiate(Config.ParticleSystemPrefab, transform.position, Config.ParticleSystemPrefab.transform.rotation);
-            var particleSystem = prefab.GetComponent<ParticleSystem>();
-            particleSystem.Play();
-            GameObject.Destroy(prefab.gameObject, prefab.main.duration + prefab.main.startLifetime.constantMax);
-        }
-
+    
         private void DealRadialDamage(AbilityUseParams value)
         {
             int layerMask = 1 << gameObject.layer;
             layerMask = ~layerMask;
 
-            Collider[] hits = Physics.OverlapSphere(transform.position, Config.Radius, layerMask);
+            Collider[] hits = Physics.OverlapSphere(transform.position, ((AreaEffectConfig)Config).Radius, layerMask);
             foreach (var hit in hits)
             {
                 var damageable = hit.gameObject.GetComponent<IDamageable>();
                 if (damageable != null)
                 {
-                    var amount = Mathf.Clamp(value.baseDamage + Config.Damage, 0, 100);
+                    var amount = Mathf.Clamp(value.baseDamage + ((AreaEffectConfig)Config).Damage, 0, 100);
                     damageable.TakeDamage(amount);
                 }
             }
-        }
-
-
-        // Start is called before the first frame update
-        void Start()
-        {
-            print($"Area Effect behaviour attached to {gameObject.name}");
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
     }
 }
