@@ -9,8 +9,8 @@ namespace RPG.Characters
     {
         public override void Use(AbilityUseParams value)
         {
-            Config.PayParticleEffect(transform.position);
-            Config.PlayAudio(value.player.AudioSource);
+            PayParticleEffect();
+            PlayAudio();
             value.player.Heal(((SelfHealCongif)Config).ExtraHealth);
         }
     }

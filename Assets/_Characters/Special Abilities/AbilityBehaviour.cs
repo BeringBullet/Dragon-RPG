@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Characters
@@ -7,8 +6,8 @@ namespace RPG.Characters
     public abstract class AbilityBehaviour : MonoBehaviour
     {
         public AbilityConfig Config { set; protected get; }
-        const float PARTICE_CLEAN_UP_DELAY = 20f;
-
+        const float PARTICLE_CLEAN_UP_DELAY = 20f;
+       
         abstract public void Use(AbilityUseParams value);
 
         protected void PayParticleEffect()
@@ -20,11 +19,18 @@ namespace RPG.Characters
             StartCoroutine(DestroyPartice(ParticleObject));
         }
 
-        IEnumerator DestroyPartice(ParticleSystem particlePrefab)
+        protected void PlayAudio()
         {
-            while (particlePrefab.isPlaying)
+            //var sound = Config.aut
+            var audioSource = GetComponent<AudioSource>();
+            audioSource.PlayOneShot(Config.GetRandomAbilitySound);
+        }
+
+        IEnumerator DestroyPartice(GameObject particlePrefab)
+        {
+            while (particlePrefab.GetComponent<ParticleSystem>().isPlaying)
             {
-                yield return new WaitForSeconds(PARTICE_CLEAN_UP_DELAY);
+                yield return new WaitForSeconds(PARTICLE_CLEAN_UP_DELAY);
             }
             Destroy(particlePrefab);
             yield return new WaitForEndOfFrame();

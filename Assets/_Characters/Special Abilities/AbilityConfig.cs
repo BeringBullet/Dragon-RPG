@@ -9,41 +9,25 @@ namespace RPG.Characters
     {
         [Header("Special Ability General")]
         [SerializeField] float energyCost = 10f;
-        [SerializeField] ParticleSystem particleSystemPrefab = null;
-        [SerializeField] AudioClip audioClip;
+        [SerializeField] GameObject particleSystemPrefab;
+        [SerializeField] AudioClip[] audioClips;
 
         
         public float EnergyCost => energyCost;
-        public ParticleSystem ParticleSystemPrefab => particleSystemPrefab;
-
+        public GameObject ParticleSystemPrefab => particleSystemPrefab;
+        public AudioClip GetRandomAbilitySound
+        {
+            get
+            {
+                return audioClips[Random.Range(0, audioClips.Length)];
+            }
+        }
+            
         protected AbilityBehaviour behaviour;
 
         abstract public void AttachComponentTo(GameObject gameObjectToAttachTo);
 
         public void Use(AbilityUseParams value) => behaviour.Use(value);
-
-        public void PlayAudio(AudioSource audioSource)
-        {
-            if (audioClip != null && audioSource != null)
-            {
-                audioSource.clip = audioClip;
-                audioSource.Play();
-            }
-        }
-
-
-        /// <summary>
-        /// Player the Particle for the Ability, used tranform.position
-        /// </summary>
-        /// <param name="position"></param>
-        public void PayParticleEffect(Vector3 position)
-        {
-            var prefab = Instantiate(ParticleSystemPrefab, position, ParticleSystemPrefab.transform.rotation);
-            var particleSystem = prefab.GetComponent<ParticleSystem>();
-            particleSystem.Play();
-            GameObject.Destroy(prefab.gameObject, prefab.main.duration + prefab.main.startLifetime.constantMax);
-        }
-
     }
 
     public struct AbilityUseParams
