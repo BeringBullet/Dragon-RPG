@@ -7817,12 +7817,6 @@ PrefabInstance:
       propertyPath: energyOrb
       value: 
       objectReference: {fileID: 101805575}
-    - target: {fileID: 114633348878164724, guid: 7737647c22c1fc64a88d5cd030c352ce,
-        type: 3}
-      propertyPath: abilities.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: ff990d3bbf423434992e38816260820e,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 3}
 --- !u!4 &813267806 stripped

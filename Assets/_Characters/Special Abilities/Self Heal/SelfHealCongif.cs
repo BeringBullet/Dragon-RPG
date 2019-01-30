@@ -5,7 +5,7 @@ using UnityEngine;
 namespace RPG.Characters
 {
     [CreateAssetMenu(menuName = ("RPG/Special Ability/Self Heal"))]
-    public class SelfHealCongif : SpecialAbility
+    public class SelfHealCongif : AbilityConfig
     {
         [Header("Self Heal specific")]
         [SerializeField] float extraHealth = 10f;

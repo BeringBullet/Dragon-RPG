@@ -13,13 +13,15 @@ namespace RPG.Characters
 
         public void Use(AbilityUseParams value)
         {
-            PayParticleEffect();
+            Config.PayParticleEffect(transform.position);
+            Config.PlayAudio(value.player.AudioSource);
             DealRadialDamage(value);
         }
 
         private void PayParticleEffect()
         {
-            var prefab = Instantiate(Config.ParticleSystemPrefab, transform.position, Quaternion.identity);
+
+            var prefab = Instantiate(Config.ParticleSystemPrefab, transform.position, Config.ParticleSystemPrefab.transform.rotation);
             var particleSystem = prefab.GetComponent<ParticleSystem>();
             particleSystem.Play();
             GameObject.Destroy(prefab.gameObject, prefab.main.duration + prefab.main.startLifetime.constantMax);
@@ -37,7 +39,7 @@ namespace RPG.Characters
                 if (damageable != null)
                 {
                     var amount = Mathf.Clamp(value.baseDamage + Config.Damage, 0, 100);
-                    damageable.AdjustHealth(amount);
+                    damageable.TakeDamage(amount);
                 }
             }
         }

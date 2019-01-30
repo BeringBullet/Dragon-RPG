@@ -10,22 +10,15 @@ namespace RPG.Characters
 
         public void Use(AbilityUseParams value)
         {
-            PayParticleEffect();
+            Config.PayParticleEffect(transform.position);
+            Config.PlayAudio(value.player.AudioSource);
             DealDamage(value);
         }
 
         private void DealDamage(AbilityUseParams value)
         {
             var amount = Mathf.Clamp(value.baseDamage + Config.ExstraDamage, 0, 100);
-            value.target.AdjustHealth(amount);
-        }
-
-        private void PayParticleEffect()
-        {
-            var prefab = Instantiate(Config.ParticleSystemPrefab, transform.position, Quaternion.identity);
-            var particleSystem = prefab.GetComponent<ParticleSystem>();
-            particleSystem.Play();
-            GameObject.Destroy(prefab.gameObject, prefab.main.duration + prefab.main.startLifetime.constantMax);
+            value.target.TakeDamage(amount);
         }
 
         // Start is called before the first frame update
