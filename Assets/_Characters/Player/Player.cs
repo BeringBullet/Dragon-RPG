@@ -53,16 +53,6 @@ namespace RPG.Characters
         
             audioSource = GetComponent<AudioSource>();
         }
-
-        private void AttachInitialAbilities()
-        {
-            for (int i = 0; i < abilities.Length; i++)
-            {
-                if (abilities[i] != null)
-                    abilities[i].AttachComponentTo(gameObject);
-            }
-        }
-
         private void Update()
         {
             if (healthAsPercentage > Mathf.Epsilon)
@@ -70,6 +60,17 @@ namespace RPG.Characters
                 SnanForAbilityKeyDown();
             }
         }
+
+
+        private void AttachInitialAbilities()
+        {
+            for (int i = 0; i < abilities.Length; i++)
+            {
+                if (abilities[i] != null)
+                    abilities[i].AttachAbilityTo(gameObject);
+            }
+        }
+
 
         private void SnanForAbilityKeyDown()
         {
@@ -122,6 +123,10 @@ namespace RPG.Characters
             animatorOverrideController["DEFAULT ATTACK"] = weaponInUse.AttackAnimClip;
         }
 
+        public void PutWeaponInHand(Weapon weaponConfig)
+        {
+            print($"Weapon in hand : {weaponConfig}");
+        }
         private void PutWeaponInHand()
         {
             var weaponPrefab = weaponInUse.WeaponPrefab;

@@ -93,6 +93,7 @@
     <Compile Include="Assets\_Environment\Water\Scripts\WaterTile.cs" />
     <Compile Include="Assets\_Weapons\Ranged\Projectile.cs" />
     <Compile Include="Assets\_Weapons\Weapon.cs" />
+    <Compile Include="Assets\_Weapons\WeaponPickupPoint.cs" />
     <None Include="Assets\Asset Packs - For Students\SimpleFX - Synty\Materials\UnlitVertexColour_Alpha.shader" />
     <None Include="Assets\_Environment\Water\Shaders\FXWaterPro.shader" />
     <None Include="Assets\_Environment\Village\FXWaterPro.shader" />
