@@ -13,12 +13,7 @@ namespace RPG.Characters
         public float Damage => damage;
         public float Radius => radius;
 
+        public override AbilityBehaviour GetBehaviorComponent(GameObject gameObject) => gameObject.AddComponent<AreaEffectBehaviour>();
 
-        public override void AttachComponentTo(GameObject gameObjectToAttachTo)
-        {
-            var behavoirComponent = gameObjectToAttachTo.AddComponent<AreaEffectBehaviour>();
-            behavoirComponent.Config = this;
-            behaviour = behavoirComponent;
-        }
     }
 }

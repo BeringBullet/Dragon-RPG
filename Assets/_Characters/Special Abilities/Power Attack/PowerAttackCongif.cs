@@ -12,12 +12,7 @@ namespace RPG.Characters
         [SerializeField] float exstraDamage = 10f;
         public float ExstraDamage => exstraDamage;
 
-
-        public override void AttachComponentTo(GameObject gameObjectToAttachTo)
-        {
-            var behavoirComponent = gameObjectToAttachTo.AddComponent<PowerAttackBehaviour>();
-            behavoirComponent.Config = this;
-            behaviour = behavoirComponent;
-        }
+        public override AbilityBehaviour GetBehaviorComponent(GameObject gameObject) => gameObject.AddComponent<PowerAttackBehaviour>();
+       
     }
 }
