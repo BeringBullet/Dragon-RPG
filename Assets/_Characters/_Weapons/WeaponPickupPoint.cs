@@ -1,10 +1,10 @@
-﻿using RPG.Characters;
+﻿
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.Weapons
+namespace RPG.Characters.Weapons
 {
     [ExecuteInEditMode]
     public class WeaponPickupPoint : MonoBehaviour
@@ -20,8 +20,11 @@ namespace RPG.Weapons
         // Update is called once per frame
         void Update()
         {
-            DestroyChildron();
-            InstantiateWeapon();
+            if (!Application.isPlaying)
+            {
+                DestroyChildron();
+                InstantiateWeapon();
+            }
         }
 
         private void DestroyChildron()
