@@ -8,7 +8,7 @@ namespace RPG.Characters
         public AbilityConfig Config { set; protected get; }
         const float PARTICLE_CLEAN_UP_DELAY = 20f;
        
-        abstract public void Use(AbilityUseParams value);
+        abstract public void Use(GameObject target = null);
 
         protected void PayParticleEffect()
         {
@@ -21,7 +21,6 @@ namespace RPG.Characters
 
         protected void PlayAudio()
         {
-            //var sound = Config.aut
             var audioSource = GetComponent<AudioSource>();
             audioSource.PlayOneShot(Config.GetRandomAbilitySound);
         }

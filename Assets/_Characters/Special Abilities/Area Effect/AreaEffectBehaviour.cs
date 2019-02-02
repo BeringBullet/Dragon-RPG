@@ -8,15 +8,15 @@ namespace RPG.Characters
 {
     public class AreaEffectBehaviour : AbilityBehaviour
     {
-        public override void Use(AbilityUseParams value)
+        public override void Use(GameObject target)
         {
             PayParticleEffect();
             PlayAudio();
-            DealRadialDamage(value);
+            DealRadialDamage();
         }
 
     
-        private void DealRadialDamage(AbilityUseParams value)
+        private void DealRadialDamage()
         {
             int layerMask = 1 << gameObject.layer;
             layerMask = ~layerMask;
@@ -24,10 +24,10 @@ namespace RPG.Characters
             Collider[] hits = Physics.OverlapSphere(transform.position, ((AreaEffectConfig)Config).Radius, layerMask);
             foreach (var hit in hits)
             {
-                var damageable = hit.gameObject.GetComponent<IDamageable>();
+                var damageable = hit.gameObject.GetComponent<HealthSystem>();
                 if (damageable != null)
                 {
-                    var amount = Mathf.Clamp(value.baseDamage + ((AreaEffectConfig)Config).Damage, 0, 100);
+                    var amount = Mathf.Clamp(((AreaEffectConfig)Config).Damage, 0, 100);
                     damageable.TakeDamage(amount);
                 }
             }

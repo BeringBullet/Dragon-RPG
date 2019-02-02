@@ -81,7 +81,6 @@
     <Compile Include="Assets\_Characters\Special Abilities\Self Heal\SelfHealBehaviour.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Self Heal\SelfHealCongif.cs" />
     <Compile Include="Assets\_Core\AudioTrigger.cs" />
-    <Compile Include="Assets\_Core\IDamageable.cs" />
     <Compile Include="Assets\_Core\SpinMe.cs" />
     <Compile Include="Assets\_Environment\Water\Scripts\Displace.cs" />
     <Compile Include="Assets\_Environment\Water\Scripts\GerstnerDisplace.cs" />

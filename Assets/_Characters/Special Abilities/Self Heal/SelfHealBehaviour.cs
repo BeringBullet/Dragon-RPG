@@ -13,7 +13,7 @@ namespace RPG.Characters
             player = GetComponent<Player>();
         }
 
-        public override void Use(AbilityUseParams value)
+        public override void Use(GameObject value)
         {
             var playerHealth = player.GetComponent<HealthSystem>();
             PayParticleEffect();

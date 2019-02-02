@@ -34,18 +34,6 @@ namespace RPG.Characters
         }
 
 
-        public void Use(AbilityUseParams value) => behaviour.Use(value);
-    }
-
-    public struct AbilityUseParams
-    {
-        public IDamageable target;
-        public float baseDamage;
-
-        public AbilityUseParams(IDamageable target, float baseDamage)
-        {
-            this.target = target;
-            this.baseDamage = baseDamage;
-        }
+        public void Use(GameObject target) => behaviour.Use(target);
     }
 }
