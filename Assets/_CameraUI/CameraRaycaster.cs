@@ -26,12 +26,11 @@ namespace RPG.CameraUI
 
 		void Update()
         {
-            screenRect = new Rect(0, 0, Screen.height, Screen.width);
+            //screenRect = new Rect(0, 0, Screen.height, Screen.width);
 
             // Check if pointer is over an interactable UI element
             if (EventSystem.current.IsPointerOverGameObject())
             {
-
                 //Implement UI interation
             }
             else
@@ -42,12 +41,12 @@ namespace RPG.CameraUI
 
         private void PreformRayCast()
         {
-            if (screenRect.Contains(Input.mousePosition))
-            {
+           // if (screenRect.Contains(Input.mousePosition))
+            //{
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (RaycastforEnemy(ray)) { return; }
                 if (RaycastForWaltable(ray)) { return; }
-            }
+           // }
         }
 
         private bool RaycastforEnemy(Ray ray)

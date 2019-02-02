@@ -56,7 +56,10 @@ namespace RPG.Characters
             UpdateAnimator();
         }
 
-
+        public void Kill()
+        {
+            //to allow death singling
+        }
         private void CameraRaycaster_onMouseOverEnemy(Enemy enemy)
         {
             if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(1))

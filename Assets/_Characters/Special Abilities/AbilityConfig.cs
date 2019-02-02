@@ -39,15 +39,13 @@ namespace RPG.Characters
 
     public struct AbilityUseParams
     {
-        public Player player;
         public IDamageable target;
         public float baseDamage;
 
-        public AbilityUseParams(IDamageable target, float baseDamage, Player player)
+        public AbilityUseParams(IDamageable target, float baseDamage)
         {
             this.target = target;
             this.baseDamage = baseDamage;
-            this.player = player;
         }
     }
 }

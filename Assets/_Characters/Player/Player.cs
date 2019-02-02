@@ -14,53 +14,48 @@ namespace RPG.Characters
 {
     public class Player : MonoBehaviour, IDamageable
     {
-        [SerializeField] float maxHealthPoints = 100f;
+
         [SerializeField] float baseDamage = 10f;
         [SerializeField] Weapon currectWeaponConfig = null;
         [SerializeField] AnimatorOverrideController animatorOverrideController = null;
-        [Header("Player Death")] [SerializeField] AudioClip[] deathSound;
-        [SerializeField] AudioClip[] damageSound;
+
         [Range(.1f, 1f)] [SerializeField] float criticalHitChance = 0.1f;
         [SerializeField] float criticalHitMultiplier = 1.25f;
         [SerializeField] ParticleSystem CriticalHitParticle;
-
-        AudioSource audioSource;
-        public AudioSource AudioSource => audioSource;
+        
 
 
         //temperarily serializing for debugging
         [SerializeField] AbilityConfig[] abilities;
 
-        const string DEATH_TRIGGER = "Death";
+
         const string ATTACK_TRIGGER = "Attack";
         const string DEFAULT_ATTACK = "DEFAULT ATTACK";
 
         Enemy currentEnemy;
         Coroutine deathCR;
         Animator animator;
-        float currentHealthPoints;
         CameraRaycaster cameraRaycaster;
         float lastHitTime = 0f;
         GameObject weaponObject;
 
-        public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
+   
 
         void Start()
         {
             RegisterForMouseClick();
-            SetCurrentMaxHealth();
             PutWeaponInHand(currectWeaponConfig);
             SetAttackAnimation();
             AttachInitialAbilities();
         
-            audioSource = GetComponent<AudioSource>();
         }
         private void Update()
         {
-            if (healthAsPercentage > Mathf.Epsilon)
+            var healthPercentage = GetComponent<HealthSystem>().healthAsPercentage;
+            if (healthPercentage > Mathf.Epsilon)
             {
                 SnanForAbilityKeyDown();
-            }
+            }            
         }
 
 
@@ -86,37 +81,8 @@ namespace RPG.Characters
             }
         }
 
-        public void TakeDamage(float damage)
-        {
-            audioSource.clip = damageSound[UnityEngine.Random.Range(0, damageSound.Length)];
-            audioSource.Play();
-            currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
+  
 
-            if (currentHealthPoints <= 0)
-            {
-                StartCoroutine(KillPlayer());            
-            }
-        }
-        public void Heal(float amount)
-        {
-            currentHealthPoints = Mathf.Clamp(currentHealthPoints + amount, 0f, maxHealthPoints);
-        }
-       
-        private IEnumerator KillPlayer()
-        {
-            animator.SetTrigger(DEATH_TRIGGER);
-
-            audioSource.clip = deathSound[UnityEngine.Random.Range(0, deathSound.Length)];
-            audioSource.Play();
-            yield return new WaitForSecondsRealtime(audioSource.clip.length);
-
-            SceneManager.LoadScene(0);
-        }
-
-        private void SetCurrentMaxHealth()
-        {
-            currentHealthPoints = maxHealthPoints;
-        }
 
         private void SetAttackAnimation()
         {
@@ -172,7 +138,7 @@ namespace RPG.Characters
             if (energyComponent.IsEnergyAvalibale(energyCost))
             {
                 energyComponent.ConsumeEnergy(energyCost);
-                var abilityPerams = new AbilityUseParams(currentEnemy, baseDamage, this);
+                var abilityPerams = new AbilityUseParams(currentEnemy, baseDamage);
                 ability.Use(abilityPerams);
             }
         }
@@ -183,7 +149,7 @@ namespace RPG.Characters
             {
                 SetAttackAnimation();
                 animator.SetTrigger(ATTACK_TRIGGER);
-                currentEnemy.TakeDamage(CalculateDamage);
+                //currentEnemy.TakeDamage(CalculateDamage);
                 lastHitTime = Time.time;
             }
         }
@@ -207,6 +173,11 @@ namespace RPG.Characters
         {
             float distanceToTarget = (currentEnemy.transform.position - transform.position).magnitude;
             return distanceToTarget <= currectWeaponConfig.MaxAttackRange;
+        }
+
+        public void TakeDamage(float damage)
+        {
+            throw new NotImplementedException();
         }
     }
 }
