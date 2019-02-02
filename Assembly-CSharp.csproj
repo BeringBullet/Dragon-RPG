@@ -70,8 +70,8 @@
     <Compile Include="Assets\_Characters\Player\Player.cs" />
     <Compile Include="Assets\_Characters\scripts\CharacterMovement.cs" />
     <Compile Include="Assets\_Characters\scripts\DominantHand.cs" />
-    <Compile Include="Assets\_Characters\scripts\Energy.cs" />
     <Compile Include="Assets\_Characters\scripts\HealthSystem.cs" />
+    <Compile Include="Assets\_Characters\scripts\SpecialAbilities.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\AbilityBehaviour.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\AbilityConfig.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Area Effect\AreaEffectBehaviour.cs" />

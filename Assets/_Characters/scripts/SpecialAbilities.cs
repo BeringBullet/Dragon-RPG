@@ -7,21 +7,28 @@ using System;
 
 namespace RPG.Characters
 {
-    public class Energy : MonoBehaviour
+    public class SpecialAbilities : MonoBehaviour
     {
-        [SerializeField] Image energyOrb;
+        [SerializeField] AbilityConfig[] abilities;
+        [SerializeField] Image energyBar;
         [SerializeField] float maxEnergyPoints = 100f;
-        [SerializeField] float regenPointPerSecond = 1f;
+        [SerializeField] float regenPointPerSecond = 3f;
+        //todo: out of energy sound
 
         float currentEnergyPoints;
-        CameraRaycaster cameraRaycaster;
+        AudioSource audioSource;
 
         float EnergyAsPercent => currentEnergyPoints / maxEnergyPoints;
+        public int Length => abilities.Length;
+
         // Use this for initialization
         void Start()
         {
+            audioSource = GetComponent<AudioSource>();
             currentEnergyPoints = maxEnergyPoints;
-            energyOrb.fillAmount = EnergyAsPercent;
+
+            AttachInitialAbilities();
+            UpdateEnergyBar();
         }
         Coroutine cr;
         private void Update()
@@ -40,6 +47,32 @@ namespace RPG.Characters
             }
         }
 
+        private void AttachInitialAbilities()
+        {
+            for (int i = 0; i < abilities.Length; i++)
+            {
+                if (abilities[i] != null)
+                    abilities[i].AttachAbilityTo(gameObject);
+            }
+        }
+        public void AttemptSpecialAbility(int abilityIndes)
+        {
+            var energyComponent = GetComponent<SpecialAbilities>();
+            var ability = abilities[abilityIndes];
+            var energyCost = ability.EnergyCost;
+
+            if (energyCost <= currentEnergyPoints)
+            {
+                ConsumeEnergy(energyCost);
+                print($"Using special ability {abilityIndes}");
+            }
+            else
+            {
+                //todo play out of energy sound
+            }
+
+        }
+
         private IEnumerator AddEnergyPoints()
         {
             var pointsToAdd = regenPointPerSecond * Time.deltaTime;
@@ -49,7 +82,7 @@ namespace RPG.Characters
             yield return new WaitForSeconds(1);
         }
 
-        public bool IsEnergyAvalibale(float amount) => amount <= currentEnergyPoints;
+        //public bool IsEnergyAvalibale(float amount) => amount <= currentEnergyPoints;
 
         public void ConsumeEnergy(float amount)
         {
@@ -60,7 +93,7 @@ namespace RPG.Characters
 
         private void UpdateEnergyBar()
         {
-            energyOrb.fillAmount = EnergyAsPercent;
+            energyBar.fillAmount = EnergyAsPercent;
         }
     }
 }
