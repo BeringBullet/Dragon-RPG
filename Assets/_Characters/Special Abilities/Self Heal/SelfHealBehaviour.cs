@@ -7,13 +7,13 @@ namespace RPG.Characters
 {
     public class SelfHealBehaviour : AbilityBehaviour
     {
-        Player player;
+        PlayerMovement player;
         private void Start()
         {
-            player = GetComponent<Player>();
+            player = GetComponent<PlayerMovement>();
         }
 
-        public override void Use(GameObject value)
+        public override void Use(GameObject target)
         {
             var playerHealth = player.GetComponent<HealthSystem>();
             PayParticleEffect();

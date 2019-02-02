@@ -8,7 +8,7 @@ using UnityEngine.UI;
 namespace RPG.Characters
 {
 
-    [RequireComponent(typeof(CharacterMovement))]
+    [RequireComponent(typeof(Character))]
     public class HealthSystem : MonoBehaviour
     {
         [SerializeField] float maxHealthPoints = 100f;
@@ -24,7 +24,7 @@ namespace RPG.Characters
         AudioSource audioSource;
         AudioSource AudioSource => audioSource;
 
-        CharacterMovement characterMovement;
+        Character characterMovement;
 
 
         public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
@@ -33,7 +33,7 @@ namespace RPG.Characters
         {
             animator = GetComponent<Animator>();
             audioSource = GetComponent<AudioSource>();
-            characterMovement = GetComponent<CharacterMovement>();
+            characterMovement = GetComponent<Character>();
 
             currentHealthPoints = maxHealthPoints;
         }
@@ -75,7 +75,7 @@ namespace RPG.Characters
             characterMovement.Kill();
             animator.SetTrigger(DEATH_TRIGGER);
 
-            var playerComp = GetComponent<Player>();
+            var playerComp = GetComponent<PlayerMovement>();
             if (playerComp && playerComp.isActiveAndEnabled)
             {
                 audioSource.clip = deathSound[UnityEngine.Random.Range(0, deathSound.Length)];

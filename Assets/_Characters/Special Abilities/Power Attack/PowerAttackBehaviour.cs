@@ -7,7 +7,7 @@ namespace RPG.Characters
     public class PowerAttackBehaviour : AbilityBehaviour
     {
       
-        public override void  Use(GameObject target)
+        public override void Use(GameObject target)
         {
             PayParticleEffect();
             PlayAudio();

@@ -13,7 +13,7 @@ namespace RPG.Characters
         [SerializeField] Image energyBar;
         [SerializeField] float maxEnergyPoints = 100f;
         [SerializeField] float regenPointPerSecond = 3f;
-        //todo: out of energy sound
+        [SerializeField] AudioClip outOfEnergySFX;
 
         float currentEnergyPoints;
         AudioSource audioSource;
@@ -30,32 +30,24 @@ namespace RPG.Characters
             AttachInitialAbilities();
             UpdateEnergyBar();
         }
-        Coroutine cr;
+
         private void Update()
         {
             if (currentEnergyPoints < maxEnergyPoints)
             {
-                cr = StartCoroutine(AddEnergyPoints());
-            }
-            else
-            {
-                if (cr != null)
-                {
-                    StopCoroutine(cr);
-                    cr = null;
-                }
+                StartCoroutine(AddEnergyPoints());
             }
         }
 
         private void AttachInitialAbilities()
         {
-            for (int i = 0; i < abilities.Length; i++)
+            for (int i = 1; i < abilities.Length; i++) //setting array slot 0 for right click
             {
                 if (abilities[i] != null)
                     abilities[i].AttachAbilityTo(gameObject);
             }
         }
-        public void AttemptSpecialAbility(int abilityIndes)
+        public void AttemptSpecialAbility(int abilityIndes, GameObject target = null)
         {
             var energyComponent = GetComponent<SpecialAbilities>();
             var ability = abilities[abilityIndes];
@@ -64,11 +56,14 @@ namespace RPG.Characters
             if (energyCost <= currentEnergyPoints)
             {
                 ConsumeEnergy(energyCost);
-                print($"Using special ability {abilityIndes}");
+                abilities[abilityIndes].Use(target);
             }
             else
             {
-                //todo play out of energy sound
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(outOfEnergySFX);
+                }
             }
 
         }
@@ -79,7 +74,7 @@ namespace RPG.Characters
             currentEnergyPoints = Mathf.Clamp(currentEnergyPoints + pointsToAdd, 0, maxEnergyPoints);
 
             UpdateEnergyBar();
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(regenPointPerSecond);
         }
 
         //public bool IsEnergyAvalibale(float amount) => amount <= currentEnergyPoints;
