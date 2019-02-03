@@ -9,7 +9,7 @@ namespace RPG.Characters
     [RequireComponent(typeof(SpecialAbilities))]
     public class PlayerMovement : MonoBehaviour
     {
-        Enemy currentEnemy;
+        EnemyAI currentEnemy;
         CameraRaycaster cameraRaycaster;
         SpecialAbilities abilities;
         Character character;
@@ -34,7 +34,7 @@ namespace RPG.Characters
             }
         }
 
-        private void onMouseOverEnemy(Enemy enemy)
+        private void onMouseOverEnemy(EnemyAI enemy)
         {
             currentEnemy = enemy;
             if (Input.GetMouseButton(0) && IsTargetInRange())

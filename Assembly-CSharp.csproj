@@ -65,13 +65,14 @@
     <Compile Include="Assets\_Characters\_Weapons\Ranged\Projectile.cs" />
     <Compile Include="Assets\_Characters\_Weapons\WeaponConfig.cs" />
     <Compile Include="Assets\_Characters\_Weapons\WeaponPickupPoint.cs" />
-    <Compile Include="Assets\_Characters\Enemies\Enemy.cs" />
+    <Compile Include="Assets\_Characters\Enemies\EnemyAI.cs" />
     <Compile Include="Assets\_Characters\Enemies\EnemyUI.cs" />
     <Compile Include="Assets\_Characters\Player\PlayerMovement.cs" />
     <Compile Include="Assets\_Characters\scripts\Character.cs" />
     <Compile Include="Assets\_Characters\scripts\DominantHand.cs" />
     <Compile Include="Assets\_Characters\scripts\HealthSystem.cs" />
     <Compile Include="Assets\_Characters\scripts\SpecialAbilities.cs" />
+    <Compile Include="Assets\_Characters\scripts\WaypointContainer.cs" />
     <Compile Include="Assets\_Characters\scripts\WeaponSystem.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\AbilityBehaviour.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\AbilityConfig.cs" />

@@ -7,7 +7,6 @@ namespace RPG.Characters.Weapons
     [CreateAssetMenu(menuName = ("RPG/Weapon"))]
     public class WeaponConfig : ScriptableObject
     {
-
         public Transform gripTransform;
 
         [SerializeField] GameObject weaponPrefab;
