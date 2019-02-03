@@ -10,6 +10,7 @@ namespace RPG.Characters
 {
     [RequireComponent(typeof(Character))]
     [RequireComponent(typeof(WeaponSystem))]
+    [RequireComponent(typeof(HealthSystem))]
     public class EnemyAI : MonoBehaviour
     {
 
@@ -41,12 +42,12 @@ namespace RPG.Characters
             if (distanceToPlayer > chaseRadius && state != State.patrolling)
             {
                 StopAllCoroutines();
-                StartCoroutine(Patrol());
+                StartCoroutine(Patrol);
             }
             if (distanceToPlayer <= chaseRadius && state != State.chasing)
             {
                 StopAllCoroutines();
-                StartCoroutine(ChasePlayer());
+                StartCoroutine(ChasePlayer);
 
             }
             if (distanceToPlayer <= currentWeaponRange && state != State.attacking)
@@ -57,17 +58,20 @@ namespace RPG.Characters
 
         }
 
-        IEnumerator Patrol()
+        IEnumerator Patrol
         {
-            state = State.patrolling;
-            while (true)
+            get
             {
-                Vector3 nextWaypointPos = patrolPath.transform.GetChild(nextwaypointIndex).position;
-                character.SetDestination(nextWaypointPos);
-                CycleWaypointWhenClose(nextWaypointPos);
-                yield return new WaitForSeconds(0.5f);
-            }
+                state = State.patrolling;
+                while (true)
+                {
+                    Vector3 nextWaypointPos = patrolPath.transform.GetChild(nextwaypointIndex).position;
+                    character.SetDestination(nextWaypointPos);
+                    CycleWaypointWhenClose(nextWaypointPos);
+                    yield return new WaitForSeconds(0.5f);
+                }
 
+            }
         }
 
         private void CycleWaypointWhenClose(Vector3 nextWaypointPos)
@@ -78,13 +82,16 @@ namespace RPG.Characters
             }
         }
 
-        IEnumerator ChasePlayer()
+        IEnumerator ChasePlayer
         {
-            state = State.chasing;
-            while (distanceToPlayer >= currentWeaponRange)
+            get
             {
-                character.SetDestination(player.transform.position);
-                yield return new WaitForEndOfFrame();
+                state = State.chasing;
+                while (distanceToPlayer >= currentWeaponRange)
+                {
+                    character.SetDestination(player.transform.position);
+                    yield return new WaitForEndOfFrame();
+                }
             }
         }
 

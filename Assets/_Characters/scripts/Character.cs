@@ -38,7 +38,7 @@ namespace RPG.Characters
         bool isAlive = true;
 
         public AnimatorOverrideController OverrideController => animatorOverrideController;
-
+        public float AnimationSpeed => animator.speed;
         private void Awake()
         {
             AddRequiredComponents();
