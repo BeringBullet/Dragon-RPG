@@ -17,10 +17,11 @@ namespace RPG.Characters
         [SerializeField] float chaseRadius = 6f;
         [SerializeField] WaypointContainer patrolPath;
         [SerializeField] float waypointTolerance = 2.0f;
+        [SerializeField] float waypointDwellTime = 2.0f;
         enum State { idle, patrolling, attacking, chasing, }
         State state = State.idle;
 
-        PlayerMovement player = null;
+        PlayerControl player = null;
         Character character;
         float currentWeaponRange;
         float distanceToPlayer;
@@ -28,13 +29,21 @@ namespace RPG.Characters
 
         void Start()
         {
-            player = FindObjectOfType<PlayerMovement>();
+            player = FindObjectOfType<PlayerControl>();
             character = GetComponent<Character>();
         }
 
 
         void Update()
         {
+            var playerHealth = player.GetComponent<HealthSystem>().healthAsPercentage;
+
+            if (playerHealth <= Mathf.Epsilon)
+            {
+                StopAllCoroutines();
+                return;
+            }
+
             distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
             WeaponSystem weaponSystem = GetComponent<WeaponSystem>();
             currentWeaponRange = weaponSystem.CurrectWeaponConfig.MaxAttackRange;
@@ -42,11 +51,13 @@ namespace RPG.Characters
             if (distanceToPlayer > chaseRadius && state != State.patrolling)
             {
                 StopAllCoroutines();
+                weaponSystem.StopAttacking();
                 StartCoroutine(Patrol);
             }
             if (distanceToPlayer <= chaseRadius && state != State.chasing)
             {
                 StopAllCoroutines();
+                weaponSystem.StopAttacking();
                 StartCoroutine(ChasePlayer);
 
             }
@@ -54,8 +65,8 @@ namespace RPG.Characters
             {
                 StopAllCoroutines();
                 state = State.attacking;
+                weaponSystem.AttackTarget(player.gameObject);
             }
-
         }
 
         IEnumerator Patrol
@@ -63,12 +74,12 @@ namespace RPG.Characters
             get
             {
                 state = State.patrolling;
-                while (true)
+                while (patrolPath != null)
                 {
                     Vector3 nextWaypointPos = patrolPath.transform.GetChild(nextwaypointIndex).position;
                     character.SetDestination(nextWaypointPos);
                     CycleWaypointWhenClose(nextWaypointPos);
-                    yield return new WaitForSeconds(0.5f);
+                    yield return new WaitForSeconds(waypointDwellTime);
                 }
 
             }

@@ -41,12 +41,13 @@ namespace RPG.Characters
 
         private void AttachInitialAbilities()
         {
-            for (int i = 1; i < abilities.Length; i++) //setting array slot 0 for right click
+            for (int i = 0; i < abilities.Length; i++)
             {
                 if (abilities[i] != null)
                     abilities[i].AttachAbilityTo(gameObject);
             }
         }
+
         public void AttemptSpecialAbility(int abilityIndes, GameObject target = null)
         {
             var energyComponent = GetComponent<SpecialAbilities>();

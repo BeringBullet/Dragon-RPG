@@ -11,10 +11,13 @@ namespace RPG.Characters
         [SerializeField] float energyCost = 10f;
         [SerializeField] GameObject particleSystemPrefab;
         [SerializeField] AudioClip[] audioClips;
+        [SerializeField] AnimationClip animationClip;
 
         
         public float EnergyCost => energyCost;
         public GameObject ParticleSystemPrefab => particleSystemPrefab;
+        public AnimationClip AnimationClip => animationClip;
+
         public AudioClip GetRandomAbilitySound
         {
             get

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 namespace RPG.Characters
@@ -16,6 +15,7 @@ namespace RPG.Characters
 
         private void DealDamage(GameObject target)
         {
+            PlayAnimation();
             var amount = Mathf.Clamp(((PowerAttackCongif)Config).ExstraDamage, 0, 100);
             target.GetComponent<HealthSystem>().TakeDamage(amount);
         }

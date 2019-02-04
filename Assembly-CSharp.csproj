@@ -66,8 +66,8 @@
     <Compile Include="Assets\_Characters\_Weapons\WeaponConfig.cs" />
     <Compile Include="Assets\_Characters\_Weapons\WeaponPickupPoint.cs" />
     <Compile Include="Assets\_Characters\Enemies\EnemyAI.cs" />
-    <Compile Include="Assets\_Characters\Enemies\EnemyUI.cs" />
-    <Compile Include="Assets\_Characters\Player\PlayerMovement.cs" />
+    <Compile Include="Assets\_Characters\Enemies\FaceCamera.cs" />
+    <Compile Include="Assets\_Characters\Player\PlayerControl.cs" />
     <Compile Include="Assets\_Characters\scripts\Character.cs" />
     <Compile Include="Assets\_Characters\scripts\DominantHand.cs" />
     <Compile Include="Assets\_Characters\scripts\HealthSystem.cs" />

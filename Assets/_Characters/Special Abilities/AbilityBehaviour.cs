@@ -7,7 +7,9 @@ namespace RPG.Characters
     {
         public AbilityConfig Config { set; protected get; }
         const float PARTICLE_CLEAN_UP_DELAY = 20f;
-       
+        const string ATTACK_TRIGGER = "Attack";
+        const string DEFAULT_ATTACK = "DEFAULT ATTACK";
+
         abstract public void Use(GameObject target = null);
 
         protected void PayParticleEffect()
@@ -17,6 +19,16 @@ namespace RPG.Characters
             ParticleObject.transform.parent = transform;
             ParticleObject.GetComponent<ParticleSystem>().Play();
             StartCoroutine(DestroyPartice(ParticleObject));
+        }
+
+        protected void PlayAnimation()
+        {
+            var animatorOverrideController = GetComponent<Character>().OverrideController;
+            var animator = GetComponent<Animator>();
+
+            animator.runtimeAnimatorController = animatorOverrideController;
+            animatorOverrideController[DEFAULT_ATTACK] = Config.AnimationClip;
+            animator.SetTrigger(ATTACK_TRIGGER);
         }
 
         protected void PlayAudio()

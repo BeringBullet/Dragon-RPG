@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -21,7 +22,7 @@ namespace RPG.Characters.Weapons
         Character character;
 
         public WeaponConfig CurrectWeaponConfig => currectWeaponConfig;
-        float CalculateDamage => baseDamage = baseDamage + currectWeaponConfig.AdditionalDamage;
+        float CalculateDamage => baseDamage + currectWeaponConfig.AdditionalDamage;
 
         void Start()
         {
@@ -46,6 +47,12 @@ namespace RPG.Characters.Weapons
                 animatorOverrideController[DEFAULT_ATTACK] = currectWeaponConfig.AttackAnimClip;
             }
         }
+
+        internal void StopAttacking()
+        {
+            StopAllCoroutines();
+        }
+
         // Update is called once per frame
         void Update()
         {
@@ -121,9 +128,9 @@ namespace RPG.Characters.Weapons
         private void AttackTarget()
         {
             transform.LookAt(target.transform);
-            animator.SetTrigger(ATTACK_TRIGGER);
-            float damageDelay = 1f; //todo get from the weapon
             SetAttackAnimation();
+            animator.SetTrigger(ATTACK_TRIGGER);
+            float damageDelay = 5f; //todo get from the weapon
             StartCoroutine(DamageAfterDelay(damageDelay));
 
         }

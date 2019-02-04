@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
-using RPG.Core;
-using System;
 
 namespace RPG.Characters
 {
@@ -10,6 +7,7 @@ namespace RPG.Characters
     {
         public override void Use(GameObject target)
         {
+            PlayAnimation();
             PayParticleEffect();
             PlayAudio();
             DealRadialDamage();
